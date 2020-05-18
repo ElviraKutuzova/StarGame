@@ -41,7 +41,7 @@ public class Rect {
     }
 
     public void setLeft(float left) {pos.x = left + halfWidth;}
-    public void setRight(float right) {pos.y = right -halfWidth;}
+    public void setRight(float right) {pos.x = right -halfWidth;}
     public void setTop(float top) {pos.y = top - halfHeight;}
     public void setBottom(float bottom) {pos.y = bottom + halfHeight;}
     public void setWidth(float width) {this.halfWidth = width/2f;}

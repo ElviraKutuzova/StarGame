@@ -41,13 +41,12 @@ public class Rect {
     }
 
     public void setLeft(float left) {pos.x = left + halfWidth;}
+       public void setTop(float top) {pos.y = top - halfHeight;}
     public void setRight(float right) {pos.x = right -halfWidth;}
-    public void setTop(float top) {pos.y = top - halfHeight;}
     public void setBottom(float bottom) {pos.y = bottom + halfHeight;}
     public void setWidth(float width) {this.halfWidth = width/2f;}
     public void setHeight(float height) {this.halfHeight = height/2f;}
     public void setSize(float width, float height){
-
         this.halfWidth = width/2f;
         this.halfHeight = height/2f;
     }

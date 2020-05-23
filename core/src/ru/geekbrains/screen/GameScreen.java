@@ -129,9 +129,9 @@ public class GameScreen extends BaseScreen {
         for (Star star : stars) {
             star.draw(batch);
         }
+        mainShip.draw(batch);
         bulletPool.drawActiveSprites(batch);
         explosionPool.drawActiveSprites(batch);
-        mainShip.draw(batch);
         enemyPool.drawActiveSprites(batch);
         batch.end();
     }

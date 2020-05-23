@@ -96,6 +96,8 @@ public class MainShip  extends Ship {
     @Override
     public void update(float delta) {
         super.update(delta);
+        bulletPos.set(pos.x, pos.y + getHalfHeight());
+        autoshoot(delta);
         if (getLeft() < worldBounds.getLeft()){
             stop();
             setLeft(worldBounds.getLeft());

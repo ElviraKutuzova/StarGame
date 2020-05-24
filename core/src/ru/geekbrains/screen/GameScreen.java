@@ -1,5 +1,6 @@
 package ru.geekbrains.screen;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
@@ -26,9 +27,11 @@ public class GameScreen extends BaseScreen {
 
     private enum State {PLAYING, GAME_OVER }
 
+    private final Game game;
+
     private Texture bg;
     private Background background;
-    private  TextureAtlas atlas;
+    private TextureAtlas atlas;
     private Star[] stars;
     private MainShip mainShip;
     private BulletPool bulletPool;
@@ -39,6 +42,10 @@ public class GameScreen extends BaseScreen {
     private State state;
     private GameOver gameOver;
     private NewGame newGame;
+
+    public GameScreen(Game game) {
+        this.game = game;
+    }
 
     @Override
     public void show() {
@@ -56,7 +63,7 @@ public class GameScreen extends BaseScreen {
         mainShip = new MainShip(atlas, bulletPool, explosionPool);
         enemyEmitter = new EnemyEmitter(atlas, enemyPool);
         gameOver = new GameOver(atlas);
-        newGame = new NewGame(atlas);
+        newGame = new NewGame(atlas, game);
         music = Gdx.audio.newMusic(Gdx.files.internal("sounds/musicFon.mp3"));
         music.setLooping(true);
         music.play();
@@ -118,6 +125,9 @@ public class GameScreen extends BaseScreen {
         if(state == State.PLAYING) {
             mainShip.touchDown(touch, pointer, button);
         }
+        if(state == State.GAME_OVER){
+            newGame.touchDown(touch,pointer,button);
+        }
         return false;
     }
 
@@ -125,6 +135,9 @@ public class GameScreen extends BaseScreen {
     public boolean touchUp(Vector2 touch, int pointer, int button) {
         if(state == State.PLAYING) {
             mainShip.touchUp(touch, pointer, button);
+        }
+        if(state == State.GAME_OVER){
+            newGame.touchUp(touch,pointer,button);
         }
         return false;
     }

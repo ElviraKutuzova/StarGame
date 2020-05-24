@@ -11,11 +11,13 @@ import ru.geekbrains.screen.GameScreen;
 
 public class NewGame extends ScaledButton {
 
+    private final Game game;
     private static final float MARGIN = 0.2f;
     private static final float MARGIN2 = 0.5f;
 
-    public NewGame(TextureAtlas atlas) {
+    public NewGame(TextureAtlas atlas, Game game) {
         super(atlas.findRegion("button_new_game"));
+        this.game = game;
     }
 
     @Override
@@ -27,6 +29,7 @@ public class NewGame extends ScaledButton {
 
     @Override
     public void action() {
+        game.setScreen(new GameScreen(game));
     }
 }
 

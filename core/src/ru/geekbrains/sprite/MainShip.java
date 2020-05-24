@@ -15,18 +15,13 @@ public class MainShip  extends Ship {
     private static final float size = 0.15f;
     private static final float margin = 0.05f;
     private static final int INVALID_POINTER = -1;
-    private static final int HP = 100;
+    private static final int HP = 10;
 
     private int leftPointer;
     private  int rightPointer;
 
     private boolean pressedLeft;
     private boolean pressedRight;
-
-
-//    private float reloadInterval;
-//    private float reloadTimer;
-
 
     public MainShip(TextureAtlas atlas, BulletPool bulletPool, ExplosionPool explosionPool){
         super(atlas.findRegion("main_ship"),1 , 2, 2);
@@ -43,6 +38,7 @@ public class MainShip  extends Ship {
         reloadTimer = reloadInterval;
         hp = HP;
         sound = Gdx.audio.newSound(Gdx.files.internal("sounds/shot.mp3"));
+
     }
 
     public boolean keyDown(int keycode) {
@@ -153,6 +149,14 @@ public class MainShip  extends Ship {
     public void dispose(){
         sound.dispose();
 
+    }
+
+    public boolean isBulletCollision(Bullet bullet) {
+        return !(bullet.getRight() < getLeft()
+                || bullet.getLeft() > getRight()
+                || bullet.getBottom() > pos.y
+                || bullet.getTop() < getBottom()
+        );
     }
 
     private void moveRight(){

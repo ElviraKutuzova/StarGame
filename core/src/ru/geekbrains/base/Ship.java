@@ -36,6 +36,7 @@ public class Ship extends Sprite {
         super(region, rows, cols, frames);
         v0 = new Vector2();
         v = new Vector2();
+        bulletV = new Vector2();
         bulletPos = new Vector2();
     }
 
@@ -68,11 +69,19 @@ public class Ship extends Sprite {
         boom();
     }
 
-    protected void autoshoot(float delta){
+    public void damage(int damage){
+        hp -= damage;
+        if(hp <= 0){
+            hp = 0;
+            destroy();
+        }
+    }
+
+    protected void autoShoot(float delta){
         reloadTimer += delta;
         if(reloadTimer >= reloadInterval){
             shoot();
-            reloadTimer =0f;
+            reloadTimer = 0f;
         }
     }
 

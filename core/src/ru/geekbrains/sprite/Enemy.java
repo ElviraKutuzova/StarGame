@@ -4,8 +4,6 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
-import java.util.Spliterator;
-
 import ru.geekbrains.base.Ship;
 import ru.geekbrains.math.Rect;
 import ru.geekbrains.pool.BulletPool;
@@ -26,7 +24,7 @@ public class Enemy extends Ship {
         if(getTop() < worldBounds.getTop()) {
             v.set(v0);
             bulletPos.set(pos.x, pos.y - getHalfHeight());
-            autoshoot(delta);
+            autoShoot(delta);
 
         }
         if(getBottom() <= worldBounds.getBottom()){

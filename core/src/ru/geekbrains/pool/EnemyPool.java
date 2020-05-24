@@ -3,7 +3,6 @@ package ru.geekbrains.pool;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 
-import ru.geekbrains.base.Sprite;
 import ru.geekbrains.base.SpritesPool;
 import ru.geekbrains.math.Rect;
 import ru.geekbrains.sprite.Enemy;

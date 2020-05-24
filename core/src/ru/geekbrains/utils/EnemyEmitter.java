@@ -70,6 +70,7 @@ public class EnemyEmitter {
         generateTimer += delta;
         if(generateTimer >= GENERATE_INTERVAL){
             generateTimer = 0f;
+//            Enemy enemy = (Enemy) enemyPool.obtain();
             Enemy enemy = (Enemy) enemyPool.obtain();
             float type = (float) Math.random();
             if (type < 0.5f) {

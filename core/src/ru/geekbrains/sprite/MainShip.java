@@ -2,12 +2,8 @@ package ru.geekbrains.sprite;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-
-import javax.xml.soap.Text;
 
 import ru.geekbrains.base.Ship;
 import ru.geekbrains.math.Rect;
@@ -97,7 +93,7 @@ public class MainShip  extends Ship {
     public void update(float delta) {
         super.update(delta);
         bulletPos.set(pos.x, pos.y + getHalfHeight());
-        autoshoot(delta);
+        autoShoot(delta);
         if (getLeft() < worldBounds.getLeft()){
             stop();
             setLeft(worldBounds.getLeft());

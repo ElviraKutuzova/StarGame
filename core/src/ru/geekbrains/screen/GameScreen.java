@@ -6,12 +6,16 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.List;
+
 import ru.geekbrains.base.BaseScreen;
 import ru.geekbrains.math.Rect;
 import ru.geekbrains.pool.BulletPool;
 import ru.geekbrains.pool.EnemyPool;
 import ru.geekbrains.pool.ExplosionPool;
 import ru.geekbrains.sprite.Background;
+import ru.geekbrains.sprite.Bullet;
+import ru.geekbrains.sprite.Enemy;
 import ru.geekbrains.sprite.MainShip;
 import ru.geekbrains.sprite.Star;
 import ru.geekbrains.utils.EnemyEmitter;
@@ -53,6 +57,7 @@ public class GameScreen extends BaseScreen {
     public void render(float delta) {
         super.render(delta);
         update(delta);
+        checkCollision();
         free();
         draw();
 
@@ -60,7 +65,6 @@ public class GameScreen extends BaseScreen {
 
     @Override
     public void resize(Rect worldBounds) {
-
         background.resize(worldBounds);
         for (Star star : stars) {
             star.resize(worldBounds);
@@ -115,6 +119,27 @@ public class GameScreen extends BaseScreen {
         mainShip.update(delta);
         enemyEmitter.generate(delta);
 
+    }
+
+    private void checkCollision(){
+        List<Enemy> enemyList = enemyPool.getActiveObjects();
+        List<Bullet> bulletList = bulletPool.getActiveObjects();
+        for(Enemy enemy : enemyList){
+            float minDist = enemy.getHalfWidth() + mainShip.getHalfWidth();
+            if(mainShip.pos.dst(enemy.pos) < minDist){
+                enemy.destroy();
+                continue;
+            }
+            for(Bullet bullet : bulletList){
+                if(bullet.getOwner() != mainShip){
+                    continue;
+                }
+                if(!enemy.isOutside(bullet)){
+                    enemy.damage(bullet.getDamage());
+                    bullet.destroy();
+                }
+            }
+        }
     }
 
     private void free(){

@@ -1,25 +1,25 @@
 
-menuAtlas.png
+MenuAtlas.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 Exit
   rotate: false
-  xy: 1, 503
-  size: 500, 500
-  orig: 500, 500
+  xy: 1, 67
+  size: 317, 317
+  orig: 317, 317
   offset: 0, 0
   index: -1
 Play
   rotate: false
-  xy: 1, 1
-  size: 500, 500
-  orig: 500, 500
+  xy: 320, 67
+  size: 317, 317
+  orig: 317, 317
   offset: 0, 0
   index: -1
 star
   rotate: false
-  xy: 503, 939
+  xy: 1, 1
   size: 64, 64
   orig: 64, 64
   offset: 0, 0

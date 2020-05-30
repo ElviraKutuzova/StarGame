@@ -14,7 +14,7 @@ public class LogoGame extends Sprite {
 
     @Override
     public void resize(Rect worldBounds) {
-        setHeightProportion(0.4f);
-        this.pos.set(worldBounds.pos);
+        setHeightProportion(0.6f);
+        setTop(0.4f);
     }
 }

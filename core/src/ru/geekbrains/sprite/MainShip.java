@@ -15,7 +15,7 @@ public class MainShip  extends Ship {
     private static final float size = 0.15f;
     private static final float margin = 0.05f;
     private static final int INVALID_POINTER = -1;
-    private static final int HP = 10;
+    private static final int HP = 100;
 
     private int leftPointer;
     private  int rightPointer;
@@ -23,22 +23,30 @@ public class MainShip  extends Ship {
     private boolean pressedLeft;
     private boolean pressedRight;
 
-    public MainShip(TextureAtlas atlas, BulletPool bulletPool, ExplosionPool explosionPool){
-        super(atlas.findRegion("main_ship"),1 , 2, 2);
+    public MainShip(TextureAtlas atlasM, BulletPool bulletPool, ExplosionPool explosionPool){
+        super(atlasM.findRegion("main_ship"), 1, 2, 2);
         this.bulletPool = bulletPool;
         this.explosionPool = explosionPool;
-        bulletRegion = atlas.findRegion("bulletMainShip");
+        bulletRegion = atlasM.findRegion("bulletMainShip");
         bulletV = new Vector2(0, 0.7f);
-        bulletHeight = 0.01f;
+        bulletHeight = 0.02f;
         damage = 1;
         v0.set(0.5f,0);
-        leftPointer = INVALID_POINTER;
-        rightPointer = INVALID_POINTER;
         reloadInterval = 0.2f;
         reloadTimer = reloadInterval;
-        hp = HP;
-        sound = Gdx.audio.newSound(Gdx.files.internal("sounds/shot.mp3"));
+        startNewGame();
+    }
 
+    public void startNewGame(){
+        hp = HP;
+        leftPointer = INVALID_POINTER;
+        rightPointer = INVALID_POINTER;
+        pressedLeft = false;
+        pressedRight = false;
+        stop();
+        this.pos.x = 0;
+        sound = Gdx.audio.newSound(Gdx.files.internal("sounds/shot.mp3"));
+        flushDestroy();
     }
 
     public boolean keyDown(int keycode) {
@@ -158,6 +166,8 @@ public class MainShip  extends Ship {
                 || bullet.getTop() < getBottom()
         );
     }
+
+
 
     private void moveRight(){
         v.set(v0);

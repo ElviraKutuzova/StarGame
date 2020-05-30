@@ -62,6 +62,7 @@ public class GameScreen extends BaseScreen {
     private StringBuilder sbHp;
     private StringBuilder sbLevel;
 
+
     public GameScreen(Game game) {
         this.game = game;
     }
